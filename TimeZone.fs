@@ -19,6 +19,11 @@ module TimeZone =
         let timeZoneInfo = makeTimeZone toTimeZone
         TimeZoneInfo.ConvertTimeFromUtc(utcDateTime, timeZoneInfo)
 
+    let convertFromLocalDateTime (toTimeZone: TimeZone) (dateTime: DateTime) =
+        let fromTimeZoneInfo = TimeZoneInfo.Local
+        let toTimeZoneInfo = makeTimeZone toTimeZone
+        TimeZoneInfo.ConvertTime(dateTime, fromTimeZoneInfo, toTimeZoneInfo)
+
     let convertDateTime (fromTimeZone: TimeZone) (toTimeZone: TimeZone) (dateTime: DateTime) =
         let fromTimeZoneInfo = makeTimeZone fromTimeZone
         let toTimeZoneInfo = makeTimeZone toTimeZone
