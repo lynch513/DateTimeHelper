@@ -2,10 +2,9 @@
 #+author:    lynch513
 #+email:     lynch513@yandex.ru
 
-* DateTimeHelper
 Simple helper for work with date/times, timezones and timestamps
 
-** Usages:
+* Usages:
 #+begin_src fsharp
 // It's my local path, it must be changed
 #r "/home/lynch/projects/Net/DateTimeHelper/bin/Release/net7.0/DateTimeHelper.dll"
@@ -17,12 +16,12 @@ open DateTimeHelper
 :
 : --> Добавлена ссылка на "/home/lynch/projects/Net/DateTimeHelper/bin/Release/net7.0/DateTimeHelper.dll" (файл может быть заблокирован процессом F# Interactive)
 
-** TimeZone
+* TimeZone
 
-*** TimeZone
+** TimeZone
 Data type for timezones. At the moment, it supports only UTC, MSK and EKB 😀.
 
-*** Convert from UtcDateTime
+** Convert from UtcDateTime
 Convert from UTC DateTime to DateTime with the given TimeZone.
 #+begin_src fsharp
 let utc = DateTime.UtcNow
@@ -41,7 +40,7 @@ val utc: DateTime = 11.02.2024 10:55:05
 val it: DateTime = 11.02.2024 15:55:05
 #+end_src
 
-*** Convert from local DateTime
+** Convert from local DateTime
 Convert from local DateTime to DateTime with the given TimeZone. Throws System.ArgumentException if the conversion could not be completed because the supplied DateTime did not have the Kind property set correctly. For example, when the Kind property is not DateTimeKind.Local.
 #+begin_src fsharp
 let now = DateTime.Now
@@ -58,7 +57,7 @@ val now: DateTime = 11.02.2024 16:38:13
 val it: DateTime = 11.02.2024 14:38:13
 #+end_src
 
-*** Convert from one TimeZone to other TimeZone
+** Convert from one TimeZone to other TimeZone
 Convert the given unspecified DateTime from one TimeZone to other TimeZone. Throws System.ArgumentException if the conversion could not be completed because the supplied DateTime did not have the Kind property set correctly. For example, when the Kind property is DateTimeKind.Local or DateTimeKind.Utc.
 #
 #+begin_src fsharp
@@ -82,7 +81,7 @@ val unspecified: DateTime = 11.02.2024 16:46:47
 val it: DateTime = 11.02.2024 14:46:47
 #+end_src
 
-*** Convert TimeZone for DateTimeOffset
+** Convert TimeZone for DateTimeOffset
 Convert the given DateTimeOffset using TimeZone.
 #+begin_src fsharp
 let nowOffset = DateTimeOffset.Now
@@ -99,8 +98,8 @@ val nowOffset: DateTimeOffset = 11.02.2024 17:01:30 +05:00
 val it: DateTimeOffset = 11.02.2024 15:01:30 +03:00
 #+end_src
 
-** UtcNow ticks
-*** Convert .Net ticks to DateTimeOffset
+* UtcNow ticks
+** Convert .Net ticks to DateTimeOffset
 It converts .Net ticks and returns DateTimeOffset with offset +00:00
 #+begin_src fsharp
 let result = UtcNowTicks.convertToDateTimeOffset 638432693019782159L
@@ -114,7 +113,7 @@ Result:
 val result: DateTimeOffset = 11.02.2024 17:28:21 +00:00
 #+end_src
 
-*** Convert .Net ticks to UtcDateTime
+** Convert .Net ticks to UtcDateTime
 It converts .Net ticks and returns DateTime with DateTimeKind.Utc
 #+begin_src fsharp
 let result = UtcNowTicks.convertToUtcDateTime 638432693019782159L
@@ -128,8 +127,8 @@ Result:
 val result: DateTime = 11.02.2024 17:28:21
 #+end_src
 
-** Unix timestamp
-*** Convert Unix timestamp to DateTimeOffset
+* Unix timestamp
+** Convert Unix timestamp to DateTimeOffset
 It converts Unix timestamp and returns DateTimeOffset with offset +00:00
 #+begin_src fsharp
 let result = UnixTimeStamp.convertToDateTimeOffset 1707653845
@@ -143,7 +142,7 @@ Result:
 val result: DateTimeOffset = 11.02.2024 12:17:25 +00:00
 #+end_src
 
-*** Convert Unix time stamp to UtcDateTime
+** Convert Unix time stamp to UtcDateTime
 It converts Unix timestamp and returns DateTime with DateTimeKind.Utc
 #+begin_src fsharp
 let result = UnixTimeStamp.convertToUtcDateTime 1707653845
